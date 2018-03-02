@@ -19,8 +19,13 @@ var shoes = {
     console.log(this);
   }
 };
+/*
+  "this" points to anything on the left of the dot/bracket while dealing with
+  the shoe object
+  e.g shoes.someFunc(), this points to the entire shoe object.
+*/
 
-var shoeFunc1 =  SHOE_ASSIGNMENT.FIX_ME; 
+var shoeFunc1 =  SHOE_ASSIGNMENT.OBJECT; 
 
 var shoes2 = {
   brand: 'Adidas',
@@ -28,12 +33,15 @@ var shoes2 = {
     var closure = () => {
       console.log(this);
     };
-
     return closure();
   }
 };
+/*
+  Since we are using es6 syntax, this is pointing still to the context at the left
+  of the dot/bracket.
+*/
 
-var shoeFunc2 = SHOE_ASSIGNMENT.FIX_ME;
+var shoeFunc2 = SHOE_ASSIGNMENT.OBJECT;
 
 var shoes3 = {
   brand: "Puma",
@@ -44,8 +52,12 @@ var shoes3 = {
     return closure();
   }
 };
+/*
+  Over here, this refers to the global object because it's an anonymous function that
+  has no params pointing to an exact object.
+*/
 
-var shoeFunc3 = SHOE_ASSIGNMENT.FIX_ME;
+var shoeFunc3 = SHOE_ASSIGNMENT.WINDOW;
 
 var shoes4 = {
   brand: "Puma",
@@ -57,8 +69,12 @@ var shoes4 = {
     return closure();
   }
 };
+/*
+  Over here, this refers to the object at the left of the dot since it's in the scope of
+  someFunc and that returns the closure which refers to it.
+*/
 
-var shoeFunc4 = SHOE_ASSIGNMENT.FIX_ME;
+var shoeFunc4 = SHOE_ASSIGNMENT.OBJECT;
 
 /*
   COLOR FUNCTIONS: Look at the commented function and determine what is 'this' would point at if the function were called
@@ -82,8 +98,8 @@ var orange = {};
 var pear = {};
 var mango = {};
 
-// apple.method = fn;
-// apple.method();
+apple.method = fn;
+apple.method();
 var fruitFunc1 = FRUIT_ASSIGNMENT.FIX_ME;
 
 // fn(orange, pear);
