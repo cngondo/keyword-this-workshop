@@ -100,24 +100,47 @@ var mango = {};
 
 apple.method = fn;
 apple.method();
-var fruitFunc1 = FRUIT_ASSIGNMENT.FIX_ME;
+/*
+  this - points to the oject "apple" which consists of the anonymous fn only
+*/
+var fruitFunc1 = FRUIT_ASSIGNMENT.APPLE;
 
-// fn(orange, pear);
-var fruitFunc2 = FRUIT_ASSIGNMENT.FIX_ME;
+fn(orange, pear);
+/*
+  this - points to the window object since there's no object to the left of the dot.
+*/
+var fruitFunc2 = FRUIT_ASSIGNMENT.WINDOW;
 
-// fn.call(apple, orange, pear);
-var fruitFunc3 = FRUIT_ASSIGNMENT.FIX_ME;
+fn.call(apple, orange, pear);
+/*
+  this - points to the "apple" object because call overrides application of this using the
+  left side of the dot.
+*/
+var fruitFunc3 = FRUIT_ASSIGNMENT.APPLE;
 
-// apple.method.call(mango, orange, pear);
-var fruitFunc4 = FRUIT_ASSIGNMENT.FIX_ME;
+apple.method.call(mango, orange, pear);
+/*
+  this - points to the mango object again because of use of the call method.
+*/
+var fruitFunc4 = FRUIT_ASSIGNMENT.MANGO;
 
-// setTimeout(fn, 1000);
-var fruitFunc5 = FRUIT_ASSIGNMENT.FIX_ME;
+setTimeout(fn, 1000);
+/*
+  this - points to the global window object. it's not assigned to any object on the cb.
+*/
+var fruitFunc5 = FRUIT_ASSIGNMENT.WINDOW;
 
-// setTimeout(apple.method, 1000);
-var fruitFunc6 = FRUIT_ASSIGNMENT.FIX_ME;
+setTimeout(apple.method, 1000);
+/*
+  this - assigned to the global object still. setTimeout cannot get the context of this
+  in the cb
+*/
+var fruitFunc6 = FRUIT_ASSIGNMENT.WINDOW;
 
-// setTimeout(function() {
-//   apple.method(orange, pear);
-// });
-var fruitFunc7 = FRUIT_ASSIGNMENT.FIX_ME;
+setTimeout(function() {
+  apple.method(orange, pear);
+});
+/*
+  this - assigned to the apple object. It's the one at the left of the dot on runtime.
+*/
+var fruitFunc7 = FRUIT_ASSIGNMENT.APPLE;
